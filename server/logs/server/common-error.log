@@ -1,0 +1,8 @@
+2020-01-05 14:40:18,370 ERROR 10676 nodejs.ClusterClientNoResponseError: client no response in 5827524ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_cluster-client@3.0.1@cluster-client\lib\leader.js:77:23)
+    at listOnTimeout (internal/timers.js:537:17)
+    at processTimers (internal/timers.js:481:7)
+name: "ClusterClientNoResponseError"
+pid: 10676
+hostname: Win10-2020RHOZL
+
