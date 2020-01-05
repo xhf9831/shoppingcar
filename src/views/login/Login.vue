@@ -95,7 +95,7 @@
      },
      replyCode(num){
        if(this.phone.length !== 11 || !/^1(3|4|5|6|7|8|9)\d{9}$/.test(this.phone) || this.phone === ''){
-         alert ('您未输入正确的手机号码或者您输入的号码有误')
+         this.$notify({type:'danger',message:'您未输入正确的手机号码或者您输入的号码有误'});
          this.phone = ''
        } else{
          this.num = num

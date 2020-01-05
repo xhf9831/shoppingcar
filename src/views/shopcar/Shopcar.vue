@@ -1,11 +1,11 @@
 <template>
  <div>
-   <my-top>
-     <div class="title" slot="mid">
-       购物车
-     </div>
-   </my-top>
-  <div class="car">
+  <my-top>
+    <div class="title" slot="mid">
+      购物车
+    </div>
+  </my-top>
+  <div v-if=" user === null" class="car">
     <img class="shop" src="../../assets/shop.png" alt="">
     <div class="message">
       请先登录噢~~
@@ -14,6 +14,7 @@
       去登录
     </div>
   </div>
+  <div v-else></div>
  </div>
 </template>
 
@@ -21,7 +22,7 @@
  export default {
    data () {
      return {
-
+       user:{}
      }
    },
    components: {
@@ -33,7 +34,11 @@
      }
    },
    mounted() {
-
+     if(JSON.parse(localStorage.getItem("user")) !== null){
+       return this.user = JSON.parse(localStorage.getItem("user"))
+     }else if(JSON.parse(localStorage.getItem("user")) === null){
+       return this.user = null
+     }
    },
    watch: {
 

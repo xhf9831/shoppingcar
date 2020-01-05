@@ -32,40 +32,40 @@
             <div class="r-i">
               <van-icon name="arrow" />
             </div>
-            <van-cell-group>
-            <van-field
-              :value="list.username"
-              label="用户名"
-              disabled
-            />
-            </van-cell-group>
-            <van-cell-group>
-            <van-field
-              :value="list.nickname"
-              label="昵称"
-            />
-            </van-cell-group>
-            <van-cell-group>
-            <van-field
-              :value="list.gender"
-              label="性别"
-            />
-            </van-cell-group>
-            <van-cell-group>
-            <van-field
-              placeholder="请输入邮箱"
-              label="邮箱"
-            />
-            </van-cell-group>
-            <van-cell-group>
-            <van-field
-              label="出生年月"
-            />
-            
-            </van-cell-group>
           </div>
         </div>
-       </van-popup>
+        <van-cell-group>
+        <van-field
+          v-model="list.username"
+          label="用户名"
+          disabled
+        />
+        </van-cell-group>
+        <van-cell-group>
+        <van-field
+          v-model="list.nickname"
+          label="昵称"
+        />
+        </van-cell-group>
+        <van-cell-group>
+        <van-field
+          :value="list.gender"
+          label="性别"
+        />
+        </van-cell-group>
+        <van-cell-group>
+        <van-field
+          placeholder="请输入邮箱"
+          label="邮箱"
+        />
+        </van-cell-group>
+        <van-cell-group>
+        <van-field
+          v-model="list.date"
+          label="出生年月"
+        />
+        </van-cell-group>
+      </van-popup>
      </div>
      <div class="photo">
        <img class="head" src="../../assets/psb.jpg" alt="">
@@ -115,6 +115,7 @@ import mtag from '../../components/mineconstructure/Tag';
       if(this.show === true){
         this.$api.user().then(res=>{
           res.userInfo.date = `${res.userInfo.year}年${res.userInfo.month}月${res.userInfo.day}日`
+          //将转译的时间添加进去
           this.list = res.userInfo
           console.log(this.list);
         }).catch(err=>{
@@ -140,22 +141,29 @@ import mtag from '../../components/mineconstructure/Tag';
 </script>
 
 <style scoped lang='scss'>
-// .h-p{
-//   display: flex;
-//   justify-content: space-between;
-//   width: 100%;
-//   .left{
-//   }
-//   .right{
-//     display: flex;
-//     .r-content{
-//       width: 100px;
-//       .r-p{
-//         width: 100%;
-//       }
-//     }
-//   }
-// }
+.h-p{
+  padding: 10px 16px;
+  height: 70px;
+  line-height: 70px;
+  display: flex;
+  justify-content: space-between;
+  .left{
+    font-size: 14px;
+    color: #323233;
+  }
+  .right{
+    display: flex;
+    .r-content{
+      border-radius: 50%;
+      overflow: hidden;
+      width: 70px;
+      .r-p{
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
 .set{
   margin-left: 350px;
   padding-top: 10px;

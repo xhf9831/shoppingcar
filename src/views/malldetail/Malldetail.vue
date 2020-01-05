@@ -25,7 +25,10 @@
     <div class="thing">
       <div class="extra">运费:{{list.__v}}</div>
       <div class="over">剩余:{{list.amount}}</div>
-      <div class="like">收藏商品：<van-icon name="like-o" /></div>
+      <div>
+        <div v-if="num === 1" class="like">收藏商品：<img @click="collectIt(2)" class="ph" src="../../assets/爱心.svg"></div>
+        <div v-else  class="like">取消收藏：<img @click="cancelcollectIt(1)" class="ph" src="../../assets/收藏.svg"></div>
+      </div>
     </div>
     <div class="shop">
       <div class="left">
@@ -55,7 +58,8 @@ import fina from '../../components/finally/Finally'
        arr:[],
        show:false,
        //有几张图滚几张图
-       active:0
+       active:0,
+       num:1
      }
    },
    components: {
@@ -72,16 +76,46 @@ import fina from '../../components/finally/Finally'
          console.log(err);
        })
      },
+     getAtitude(){
+       this.$api.isCollection(this.list.id).then(res=>{
+       console.log(res);
+       }).catch(err=>{
+         console.log(err);
+       })
+     },
      clickIem() {
       this.show = !this.show
     },
     toLast(){
        this.$router.go(-1)
+     },
+     collectIt(num){
+       this.$api.collection(this.list).then(res=>{
+         if(res.code === 200){
+           this.num = num
+           this.$notify({type:'success',message:'收藏成功'});
+         }else if(res.code === -1){
+           this.$notify({type:'danger',message:'请登录'});
+         }
+       }).catch(err=>{
+         console.log(err);
+       })
+     },
+     cancelcollectIt(num){
+       this.$api.cancelCollection(this.list.id).then(res=>{
+         if(res.code === 200){
+           this.num = num
+           this.$notify({type:'success',message:'已取消收藏'});
+         }
+       }).catch(err=>{
+         console.log(err);
+       })
      }
    },
    mounted() {
      this.id = this.$route.query.id
      this.getData()
+     this.getAtitude()
    },
    watch: {
 
@@ -93,6 +127,9 @@ import fina from '../../components/finally/Finally'
 </script>
 
 <style scoped lang='scss'>
+.bg{
+  color: #FF4444
+}
 .goback{
     width: 40px;
     margin-left: 10px;
@@ -124,10 +161,19 @@ background: white
 }
 .thing{
   padding: 20px 10px;
+  height: 30px;
+  line-height: 30px;
   display: flex;
   justify-content: space-between;
   color: #CBCBC2;
   font-size: 15px;
+  .like{
+    .ph{
+      position: relative;
+      top:3px;
+      width: 20px;
+    }
+  }
 }
 .shop{
   height: 20px;

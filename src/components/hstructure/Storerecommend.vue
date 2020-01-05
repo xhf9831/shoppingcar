@@ -54,7 +54,6 @@ import BScroll from "better-scroll";
       }); 
     },
     toDetail(item){
-      console.log(item);
       this.$router.push({path:'/malldetail',query:{id:item.goodsId}})
     }
    },
