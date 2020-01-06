@@ -4,7 +4,7 @@
      <span class="title">热销产品</span>
    </div>
    <div class="product">
-     <div class="p-content" v-for="(item,index) in list.hotGoods" :key="index">
+     <div class="p-content" v-for="(item,index) in list.hotGoods" :key="index" @click="Todetail(item)">
        <div class="p-photo">
          <img class="p-image" :src="item.image" alt="">
        </div>
@@ -35,6 +35,9 @@
        }).catch(err=>{
          console.log(err);
        })
+     },
+     Todetail(item){
+       this.$router.push({path:'/malldetail',query:{id:item.goodsId}})
      }
    },
    mounted() {

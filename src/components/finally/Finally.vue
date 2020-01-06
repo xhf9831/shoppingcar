@@ -1,8 +1,8 @@
 <template>
- <div class="van__bot">
+ <div class="van__bot foot">
   <van-goods-action>
-    <van-goods-action-icon icon="wap-home-o" text="首页" @click="go('/home')" />
-    <van-goods-action-icon :info="num" icon="cart-o" text="购物车" @click="go('/shopcar')" />
+    <van-goods-action-icon icon="wap-home-o" text="首页" to="/home" />
+    <van-goods-action-icon :info="num" icon="cart-o" text="购物车" to="/shopcar" />
     <van-goods-action-button type="warning" text="加入购物车" @click="sale(id)" />
     <van-goods-action-button type="danger" text="立即购买" @click="onClickButton" />
 
@@ -27,9 +27,6 @@
 
    },
    methods: {
-    go(text){
-      this.$router.push(text)
-    },
     sale(id) {
       this.$api.addShop(id).then(res=>{
         if(res.code === 200){
@@ -42,7 +39,11 @@
     },
     getNum(){
       this.$api.getCard().then(res=>{
-        this.num = res.shopList.length
+        if(res.shopList.length>0){
+          this.num = res.shopList.length
+        }else{
+          this.num = ''
+        }
       }).catch(err=>{
         console.log(err);
       })
@@ -63,5 +64,9 @@
 </script>
 
 <style scoped lang='scss'>
-
+.foot{
+  width: 100%;
+  height: 100%;
+  background: white
+}
 </style>

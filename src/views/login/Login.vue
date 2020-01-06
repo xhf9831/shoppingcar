@@ -118,10 +118,8 @@
      submitForm(){
        this.$api.login(this.nickname,this.password,this.verify).then(res=>{
          if(res.code === 200){
-           console.log(res);
            this.$toast('登录成功');
-          //  localStorage.setItem("user",JSON.stringify({name:this.nickname}))
-          localStorage.setItem("user" , JSON.stringify(res.userInfo))
+           localStorage.setItem("user" , JSON.stringify(res.userInfo))
            this.$router.push('/home')
          }else if(res.code === -1){
            this.$toast('用户名错误');

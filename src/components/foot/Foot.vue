@@ -23,7 +23,11 @@
    methods: {
      getNum(){
       this.$api.getCard().then(res=>{
-        this.num = res.shopList.length
+        if(res.shopList.length>0){
+          this.num = res.shopList.length
+        }else{
+          this.num = ''
+        }
       }).catch(err=>{
         console.log(err);
       })

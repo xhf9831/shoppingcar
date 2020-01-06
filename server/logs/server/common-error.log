@@ -44,3 +44,53 @@ hostname: Win10-2020RHOZL
 pid: 9432
 hostname: Win10-2020RHOZL
 
+2020-01-06 22:09:20,450 ERROR 6364 [-/127.0.0.1/-/3ms POST /v1/cancelCollection] nodejs.CastError: Cast to string failed for value "{ id: 'e53c046465204d4fb8f22431cc2807e7' }" at path "cid" for model "Collection"
+    at new CastError (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\error\cast.js:39:11)
+    at SchemaString.cast (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\schema\string.js:583:11)
+    at SchemaString.SchemaType.applySetters (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\schematype.js:975:12)
+    at SchemaString.SchemaType._castForQuery (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\schematype.js:1389:15)
+    at SchemaString.castForQuery (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\schema\string.js:645:15)
+    at SchemaString.SchemaType.castForQueryWrapper (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\schematype.js:1358:15)
+    at cast (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\cast.js:260:34)
+    at model.Query.Query.cast (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\query.js:4683:12)
+    at model.Query.Query._castConditions (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\query.js:1861:10)
+    at model.Query.<anonymous> (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\query.js:2728:8)
+    at model.Query._wrappedThunk [as _deleteOne] (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\helpers\query\wrapThunk.js:16:8)
+    at C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_kareem@2.3.1@kareem\index.js:369:33
+    at processTicksAndRejections (internal/process/task_queues.js:79:11)
+stringValue: "\"{ id: 'e53c046465204d4fb8f22431cc2807e7' }\""
+kind: "string"
+value: {"id":"e53c046465204d4fb8f22431cc2807e7"}
+path: "cid"
+reason: null
+message: "Cast to string failed for value \"{ id: 'e53c046465204d4fb8f22431cc2807e7' }\" at path \"cid\" for model \"Collection\""
+name: "CastError"
+model: undefined
+pid: 6364
+hostname: Win10-2020RHOZL
+
+2020-01-06 22:09:21,757 ERROR 6364 [-/127.0.0.1/-/1ms POST /v1/cancelCollection] nodejs.CastError: Cast to string failed for value "{ id: 'e53c046465204d4fb8f22431cc2807e7' }" at path "cid" for model "Collection"
+    at new CastError (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\error\cast.js:39:11)
+    at SchemaString.cast (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\schema\string.js:583:11)
+    at SchemaString.SchemaType.applySetters (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\schematype.js:975:12)
+    at SchemaString.SchemaType._castForQuery (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\schematype.js:1389:15)
+    at SchemaString.castForQuery (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\schema\string.js:645:15)
+    at SchemaString.SchemaType.castForQueryWrapper (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\schematype.js:1358:15)
+    at cast (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\cast.js:260:34)
+    at model.Query.Query.cast (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\query.js:4683:12)
+    at model.Query.Query._castConditions (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\query.js:1861:10)
+    at model.Query.<anonymous> (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\query.js:2728:8)
+    at model.Query._wrappedThunk [as _deleteOne] (C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_mongoose@5.8.4@mongoose\lib\helpers\query\wrapThunk.js:16:8)
+    at C:\Users\Administrator\Desktop\shopping-master\server\node_modules\_kareem@2.3.1@kareem\index.js:369:33
+    at processTicksAndRejections (internal/process/task_queues.js:79:11)
+stringValue: "\"{ id: 'e53c046465204d4fb8f22431cc2807e7' }\""
+kind: "string"
+value: {"id":"e53c046465204d4fb8f22431cc2807e7"}
+path: "cid"
+reason: null
+message: "Cast to string failed for value \"{ id: 'e53c046465204d4fb8f22431cc2807e7' }\" at path \"cid\" for model \"Collection\""
+name: "CastError"
+model: undefined
+pid: 6364
+hostname: Win10-2020RHOZL
+

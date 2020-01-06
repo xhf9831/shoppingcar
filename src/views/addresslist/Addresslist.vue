@@ -15,10 +15,16 @@
 
    },
    methods: {
-
+     getData(){
+       this.$api.getAddress().then(res=>{
+         console.log(res);
+       }).catch(err=>{
+         console.log(err);
+       })
+     }
    },
    mounted() {
-
+     this.getData()
    },
    watch: {
 

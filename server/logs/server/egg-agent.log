@@ -414,3 +414,43 @@ hostname: Win10-2020RHOZL
 2020-01-06 09:34:53,725 INFO 6052 [egg-watcher] Recieved a change event from eventSource: {"event":"change","path":"C:\\Users\\Administrator\\Desktop\\shoppingcar\\server\\app\\router\\api.js","stat":{"dev":1143674540,"mode":33206,"nlink":1,"uid":0,"gid":0,"rdev":0,"blksize":4096,"ino":562949953944931,"size":0,"blocks":0,"atimeMs":1578270866178.9363,"mtimeMs":1578274493708.4192,"ctimeMs":1578274493708.4192,"birthtimeMs":1578270866178.9363,"atime":"2020-01-06T00:34:26.179Z","mtime":"2020-01-06T01:34:53.708Z","ctime":"2020-01-06T01:34:53.708Z","birthtime":"2020-01-06T00:34:26.179Z"},"remove":false,"isDirectory":false,"isFile":true}
 2020-01-06 09:34:53,741 INFO 6052 [egg-watcher] Recieved a change event from eventSource: {"event":"change","path":"C:\\Users\\Administrator\\Desktop\\shoppingcar\\server\\app\\router\\api.js","stat":{"dev":1143674540,"mode":33206,"nlink":1,"uid":0,"gid":0,"rdev":0,"blksize":4096,"ino":562949953944931,"size":3145,"blocks":8,"atimeMs":1578270866178.9363,"mtimeMs":1578274493738.421,"ctimeMs":1578274493738.421,"birthtimeMs":1578270866178.9363,"atime":"2020-01-06T00:34:26.179Z","mtime":"2020-01-06T01:34:53.738Z","ctime":"2020-01-06T01:34:53.738Z","birthtime":"2020-01-06T00:34:26.179Z"},"remove":false,"isDirectory":false,"isFile":true}
 2020-01-06 09:34:58,063 WARN 6052 [ClusterClient:Connection] socket is closed by other side while there were still unhandled data in the socket buffer
+2020-01-06 21:22:32,152 INFO 6192 [egg:logger] init all loggers with options: {"dir":"C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\logs\\server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"server-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2020-01-06 21:22:32,173 INFO 6192 [egg:core] dump config after load, 13ms
+2020-01-06 21:22:32,573 INFO 6192 [egg-watcher] Start watching: ["C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\app","C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\config","C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\mocks","C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\mocks_proxy","C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\app.js"]
+2020-01-06 21:22:32,573 INFO 6192 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\app"
+2020-01-06 21:22:32,574 INFO 6192 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\config"
+2020-01-06 21:22:32,574 INFO 6192 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\mocks"
+2020-01-06 21:22:32,575 INFO 6192 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\mocks_proxy"
+2020-01-06 21:22:32,575 INFO 6192 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\app.js"
+2020-01-06 21:22:32,576 INFO 6192 [egg-watcher:agent] watcher start success
+2020-01-06 21:22:32,658 INFO 6192 [egg:core] dump config after ready, 43ms
+2020-01-06 21:51:16,031 INFO 5428 [egg:logger] init all loggers with options: {"dir":"C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\logs\\server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"server-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2020-01-06 21:51:16,039 INFO 5428 [egg:core] dump config after load, 4ms
+2020-01-06 21:51:16,103 INFO 5428 [egg-watcher] Start watching: ["C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\app","C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\config","C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\mocks","C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\mocks_proxy","C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\app.js"]
+2020-01-06 21:51:16,103 INFO 5428 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\app"
+2020-01-06 21:51:16,103 INFO 5428 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\config"
+2020-01-06 21:51:16,103 INFO 5428 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\mocks"
+2020-01-06 21:51:16,104 INFO 5428 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\mocks_proxy"
+2020-01-06 21:51:16,104 INFO 5428 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\app.js"
+2020-01-06 21:51:16,104 INFO 5428 [egg-watcher:agent] watcher start success
+2020-01-06 21:51:16,123 INFO 5428 [egg:core] dump config after ready, 9ms
+2020-01-06 21:51:28,049 INFO 5612 [egg:logger] init all loggers with options: {"dir":"C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\logs\\server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"server-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2020-01-06 21:51:28,058 INFO 5612 [egg:core] dump config after load, 5ms
+2020-01-06 21:51:28,117 INFO 5612 [egg-watcher] Start watching: ["C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\app","C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\config","C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\mocks","C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\mocks_proxy","C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\app.js"]
+2020-01-06 21:51:28,117 INFO 5612 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\app"
+2020-01-06 21:51:28,118 INFO 5612 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\config"
+2020-01-06 21:51:28,118 INFO 5612 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\mocks"
+2020-01-06 21:51:28,118 INFO 5612 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\mocks_proxy"
+2020-01-06 21:51:28,119 INFO 5612 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\app.js"
+2020-01-06 21:51:28,119 INFO 5612 [egg-watcher:agent] watcher start success
+2020-01-06 21:51:28,133 INFO 5612 [egg:core] dump config after ready, 8ms
+2020-01-06 21:51:56,750 INFO 5712 [egg:logger] init all loggers with options: {"dir":"C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\logs\\server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"server-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2020-01-06 21:51:56,762 INFO 5712 [egg:core] dump config after load, 5ms
+2020-01-06 21:51:56,820 INFO 5712 [egg-watcher] Start watching: ["C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\app","C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\config","C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\mocks","C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\mocks_proxy","C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\app.js"]
+2020-01-06 21:51:56,820 INFO 5712 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\app"
+2020-01-06 21:51:56,821 INFO 5712 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\config"
+2020-01-06 21:51:56,821 INFO 5712 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\mocks"
+2020-01-06 21:51:56,821 INFO 5712 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\mocks_proxy"
+2020-01-06 21:51:56,821 INFO 5712 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\app.js"
+2020-01-06 21:51:56,821 INFO 5712 [egg-watcher:agent] watcher start success
+2020-01-06 21:51:56,837 INFO 5712 [egg:core] dump config after ready, 7ms

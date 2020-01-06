@@ -6,21 +6,21 @@
   </div>
   <div class="photo">
     <div class="left">
-      <div class="fir-content">
+      <div class="fir-content" @click="Todetail(arr[0].goodsId)">
         <img class="first" :src="arr[0].image" alt="">
       </div>
-      <div class="for-content">
+      <div class="for-content" @click="Todetail(arr[3].goodsId)">
         <img class="forth" :src="arr[3].image" alt="">
       </div>
     </div>
     <div class="right">
-      <div class="sec-content">
+      <div class="sec-content"  @click="Todetail(arr[1].goodsId)">
         <img class="second" :src="arr[1].image" alt="">
       </div>
-      <div class="thi-content">
+      <div class="thi-content"  @click="Todetail(arr[2].goodsId)">
         <img class="third" :src="arr[2].image" alt="">
       </div>
-      <div class="fix-content">
+      <div class="fix-content"  @click="Todetail(arr[4].goodsId)">
         <img class="fixth" :src="arr[4].image" alt="">
       </div>
     </div>
@@ -52,7 +52,9 @@
 
    },
    methods: {
-     
+     Todetail(item){
+       this.$router.push({path:'/malldetail',query:{id:item}})
+     }
    },
    mounted() {
    },

@@ -8,7 +8,7 @@
      <div class="van__box"><van-icon size="25px" name="points" />收藏商品</div>
      <div><van-icon name="arrow" /></div>
    </div>
-   <div class="address box">
+   <div class="address box" @click ="go('/addresslist')">
      <div class="van__box"><van-icon size="25px" name="location-o" />地址管理</div>
      <div><van-icon name="arrow" /></div>
    </div>
