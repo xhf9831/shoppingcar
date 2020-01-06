@@ -9,9 +9,11 @@ import FastClick from 'fastclick'
 import Api from './http/Api'
 import './global'
 import { PullRefresh } from 'vant';
+import dayjs from 'dayjs'
 
 Vue.use(PullRefresh);
 Vue.prototype.$api = Api
+Vue.prototype.$dayjs = dayjs
 FastClick.attach(document.body);
 Vue.use(Vant);
 Vue.config.productionTip = false

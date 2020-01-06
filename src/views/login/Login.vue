@@ -118,14 +118,16 @@
      submitForm(){
        this.$api.login(this.nickname,this.password,this.verify).then(res=>{
          if(res.code === 200){
-           this.$notify({type:'success',message:'登录成功'});
-           localStorage.setItem("user",JSON.stringify({name:this.nickname}))
+           console.log(res);
+           this.$toast('登录成功');
+          //  localStorage.setItem("user",JSON.stringify({name:this.nickname}))
+          localStorage.setItem("user" , JSON.stringify(res.userInfo))
            this.$router.push('/home')
          }else if(res.code === -1){
-           this.$notify({type:'danger',message:'用户名错误'});
+           this.$toast('用户名错误');
            this.changeCode()
          }else if(res.code === -2){
-           this.$notify({type:'danger',message:'验证码错误'});
+           this.$toast('验证码错误');
            this.changeCode()
          }
        }).catch(err=>{
@@ -135,13 +137,14 @@
      registerForm(){
        this.$api.register(this.nickname,this.password,this.verify).then(res=>{
          if(res.code === 200){
-           this.$notify({type:'success',message:'注册成功'});
+           this.$toast('注册成功');
+           localStorage.setItem("user",JSON.stringify({name:this.nickname}))
            this.$router.push('/home')
          }else if (res.code === -1){
-           this.$notify({type:'danger',message:'用户名已存在'});
+           this.$toast('用户名已存在');
            this.changeCode()
          }else if(res.code === -2){
-           this.$notify({type:'danger',message:'验证码错误'});
+           this.$toast('验证码错误');
            this.changeCode()
          }
        }).catch(err=>{

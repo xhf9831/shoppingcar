@@ -59,21 +59,38 @@
           label="邮箱"
         />
         </van-cell-group>
-        <van-cell-group>
-        <van-field
-          v-model="list.date"
-          label="出生年月"
+        <div class="year">
+          <div class="y-title">
+            <span class="title">出生年月</span>
+          </div>
+          <div class="y-date">
+            <span class="date" @click="changeFlag(true)">{{list.year}}年{{list.month}}月{{list.day}}日</span>
+          </div> 
+        </div>
+        <van-datetime-picker
+          v-model="currentTime"
+          v-if="flag"
+          type="date"
+          :min-date="minDate"
+          :max-date="maxDate"
+          @cancel ="cancel"
+          @confirm ="confirm"
         />
-        </van-cell-group>
+        <div class="but-content van__but">
+          <van-button type="primary" @click="submitIt()">保存</van-button>
+        </div>
+        <div class="but-content van__but">
+          <van-button type="default">取消</van-button>
+        </div>
       </van-popup>
      </div>
      <div class="photo">
        <img class="head" src="../../assets/psb.jpg" alt="">
      </div>
-     <div v-if="user !== null" class="user">
-       欢迎您：{{user.name}}
+     <div v-if="user" class="user">
+       欢迎您：{{user.nickname}}
      </div>
-     <div @click="go('/login')" v-if=" user === null" class="user">
+     <div @click="go('/login')" v-if="!user" class="user">
        登录/注册
      </div>
      <div v-if=" user !== null" class="exit" @click="exit">
@@ -81,54 +98,91 @@
      </div>
    </div>
    <mtag></mtag>
+   <conf></conf>
  </div>
 </template>
 
 <script>
 import mtag from '../../components/mineconstructure/Tag';
+import conf from '../../components/mineconstructure/Confunction';
  export default {
    data () {
      return {
-      user:{},
+      user:null,
       show: false,
-      list:[]
+      list:[],
+      flag:false,
+      minDate: new Date(1900, 0, 1),
+      maxDate: new Date(),
+      currentTime:null
      }
    },
    components: {
-     mtag
+     mtag,
+     conf
    },
    methods: {
      exit(){
-       localStorage.clear()
        this.$api.loginOut().then(res=>{
          if(res.code === 0){
-           this.$notify({type:'success',message:'退出成功'});
+          localStorage.clear()
+          this.$toast('退出成功');
+          this.$router.go(0)
          }
        })
-       this.$router.push('/login')
      },
      go(text){
        this.$router.push(text)
      },
      showPopup(item) {
-      this.show = item;
-      if(this.show === true){
+      if(this.user !== null){
         this.$api.user().then(res=>{
-          res.userInfo.date = `${res.userInfo.year}年${res.userInfo.month}月${res.userInfo.day}日`
-          //将转译的时间添加进去
+          this.show = item
+          this.currentTime=new Date(res.userInfo.year,res.userInfo.month-1,res.userInfo.day)
           this.list = res.userInfo
-          console.log(this.list);
+        })}else if(this.user === null){
+          this.$toast('请登录');
+        }
+      },
+      changeFlag(item){
+        this.flag = item
+      },
+      cancel(){
+        this.flag = false
+      },
+      confirm(val){
+        console.log(this.currentTime);
+        this.list.year = this.$dayjs(val).format("YYYY")
+        this.list.month = this.$dayjs(val).format("MM")
+        this.list.day = this.$dayjs(val).format("DD")
+        this.flag = false
+      },
+      submitIt(){
+        let obj ={
+          gender:this.list.gender,
+          email:'383576897@qq.com',
+          year:this.list.year,
+          month:this.list.month,
+          day:this.list.day,
+          id:this.list._id,
+          nickname:this.list.nickname
+        };
+        this.$api
+        .saveUser(obj)
+        .then(res=>{
+          this.show = false
+          this.user = res.user//直接改变user的值
+          localStorage.setItem("user", JSON.stringify(res.user)) //改变本地储存的值
         }).catch(err=>{
           console.log(err);
         })
-      } 
-    }
+      }
    },
    mounted() {
-     if(JSON.parse(localStorage.getItem("user")) !== null){
-       return this.user = JSON.parse(localStorage.getItem("user"))
-     }else if(JSON.parse(localStorage.getItem("user")) === null){
-       return this.user = null
+     if(localStorage.user){
+      this.user = JSON.parse(localStorage.getItem("user"))
+     }else{
+      this.user = null
      }
    },
    watch: {
@@ -141,6 +195,32 @@ import mtag from '../../components/mineconstructure/Tag';
 </script>
 
 <style scoped lang='scss'>
+.year{
+  display: flex;
+  width: 100%;
+  padding: 2.667vw 4.267vw;
+  border-bottom: 0.05px solid rgb(228, 228, 228);
+  .y-title{
+    width: 24vw;
+   .title{
+      color: #323233;
+      font-size: 3.733vw;
+      line-height: 6.4vw;
+    } 
+  }
+  .y-date{
+    width: 253px;
+    .date{
+      color: #323233;
+      font-size: 3.733vw;
+      line-height: 6.4vw;
+    }
+  }
+}
+.but-content{
+  text-align: center;
+  margin-top: 15px;
+}
 .h-p{
   padding: 10px 16px;
   height: 70px;

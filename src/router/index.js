@@ -13,7 +13,7 @@ const routes = [{
         path: '/home',
         component: common,
         children: [{
-            path: '/',
+            path: '',
             name: 'home',
             component: Home
         }]
@@ -59,6 +59,12 @@ const routes = [{
         name: 'malldetail',
         component: () =>
             import ('../views/malldetail/Malldetail')
+    },
+    {
+        path: '/collection',
+        name: 'collection',
+        component: () =>
+            import ('../views/collection/Collection')
     }
 ]
 

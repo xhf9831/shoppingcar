@@ -33,3 +33,28 @@
         display: block;
     }
 }
+
+.van__but {
+    .van-button--normal {
+        padding: 0px 140px;
+    }
+}
+
+.van__box {
+    .van-icon-records:before {
+        position: relative;
+        top: 6px;
+    }
+    .van-icon-points:before {
+        position: relative;
+        top: 6px;
+    }
+    .van-icon-location-o:before {
+        position: relative;
+        top: 6px;
+    }
+    .van-icon-clock-o:before {
+        position: relative;
+        top: 6px;
+    }
+}

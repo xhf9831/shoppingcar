@@ -43,7 +43,7 @@
       <van-tab title="商品评论"></van-tab>
     </van-tabs>
    </div>
-   <fina></fina>
+   <fina :id="list.id"></fina>
  </div>
 </template>
 
@@ -77,10 +77,12 @@ import fina from '../../components/finally/Finally'
        })
      },
      getAtitude(){
-       this.$api.isCollection(this.list.id).then(res=>{
-       console.log(res);
+       this.$api.isCollection(this.id).then(res=>{
+         if(res.isCollection === 1){
+           this.num = 2
+         }
        }).catch(err=>{
-         console.log(err);
+        console.log(err);
        })
      },
      clickIem() {
@@ -89,23 +91,23 @@ import fina from '../../components/finally/Finally'
     toLast(){
        this.$router.go(-1)
      },
-     collectIt(num){
+    collectIt(num){
        this.$api.collection(this.list).then(res=>{
          if(res.code === 200){
            this.num = num
-           this.$notify({type:'success',message:'收藏成功'});
+           this.$toast('收藏成功');
          }else if(res.code === -1){
-           this.$notify({type:'danger',message:'请登录'});
+           this.$toast('请登录');
          }
        }).catch(err=>{
          console.log(err);
        })
      },
-     cancelcollectIt(num){
-       this.$api.cancelCollection(this.list.id).then(res=>{
+    cancelcollectIt(num){
+       this.$api.cancelCollection({id:this.id}).then(res=>{
          if(res.code === 200){
            this.num = num
-           this.$notify({type:'success',message:'已取消收藏'});
+           this.$toast('已取消收藏');
          }
        }).catch(err=>{
          console.log(err);

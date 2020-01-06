@@ -24,7 +24,7 @@ class UserController extends BaseController {
 
         let data = await ctx.model.User.findOne({ nickname })
         if (!data) {
-            let username = this.ctx.helper.random(15)   // 获取用户名
+            let username = this.ctx.helper.random(15) // 获取用户名
             let user = await new ctx.model.User({
                 nickname,
                 username,
@@ -33,20 +33,20 @@ class UserController extends BaseController {
             await user.save()
             ctx.session.userInfo = user
             let userInfo = {
-                avatar: user.avatar,
-                day: user.day,
-                gender: user.gender,
-                month: user.month,
-                nickname: user.nickname,
-                username: user.username,
-                year: user.year,
+                    avatar: user.avatar,
+                    day: user.day,
+                    gender: user.gender,
+                    month: user.month,
+                    nickname: user.nickname,
+                    username: user.username,
+                    year: user.year,
 
-            }
-            // Token
-            // let userToken = {
-            //     name: userInfo.username
-            // }
-            // const token = await this.service.token.setToken(userToken)
+                }
+                // Token
+                // let userToken = {
+                //     name: userInfo.username
+                // }
+                // const token = await this.service.token.setToken(userToken)
             ctx.body = {
                 code: 200,
                 userInfo,
@@ -78,7 +78,7 @@ class UserController extends BaseController {
             }
         }
         let data = await ctx.model.User.findOne({ nickname })
-        if (!data || !data.nickname) {  //说明数据库没有这个名字
+        if (!data || !data.nickname) { //说明数据库没有这个名字
             this.error('用户名错误')
         } else {
             if (data.password != md5(password)) {
@@ -86,19 +86,19 @@ class UserController extends BaseController {
             } else {
                 ctx.session.userInfo = data
                 let userInfo = {
-                    avatar: data.avatar,
-                    day: data.day,
-                    gender: data.gender,
-                    month: data.month,
-                    nickname: data.nickname,
-                    username: data.username,
-                    year: data.year
-                }
-                // Token
-                // let userToken = {
-                //     name: userInfo.username
-                // }
-                // const token = await this.service.token.setToken(userToken)
+                        avatar: data.avatar,
+                        day: data.day,
+                        gender: data.gender,
+                        month: data.month,
+                        nickname: data.nickname,
+                        username: data.username,
+                        year: data.year
+                    }
+                    // Token
+                    // let userToken = {
+                    //     name: userInfo.username
+                    // }
+                    // const token = await this.service.token.setToken(userToken)
                 ctx.body = {
                     code: 200,
                     msg: '登录成功',
@@ -111,57 +111,57 @@ class UserController extends BaseController {
 
     // 短信验证码
     async sendCodeMsg() {
-        let num = ''
-        for (let i = 0; i < 6; i++) {
-            num += String(Math.floor(Math.random() * 10))
-        }
-        const { phone } = this.ctx.request.body
-        const ip = this.ctx.request.header['x-forwarded-for']   // 客户端ip
-        const add_day = await this.ctx.service.tools.getDay()
-        const mobileTemp = await this.ctx.model.MobileTemp.findOne({ add_day });
-        //1个ip 一天只能发10个手机号
-        var ipCount = await this.ctx.model.MobileTemp.find({ ip, add_day }).count();
-        if (mobileTemp) {
-            // 1分钟后再发送
-            if (((+new Date() / 1000) - mobileTemp.add_timer / 1000) < 60) {
-                return this.ctx.body = {
-                    code: -2,
-                    msg: '请1分钟后再试',
-                    timer: 60 - Math.floor(((+new Date() / 1000) - mobileTemp.add_timer / 1000))
-                }
+            let num = ''
+            for (let i = 0; i < 6; i++) {
+                num += String(Math.floor(Math.random() * 10))
             }
-            // 说明次数没有到，继续发送
-            if (mobileTemp.send_count < 6 && ipCount < 10) {
-                const send_count = mobileTemp.send_count + 1
-                await this.ctx.model.MobileTemp.updateOne({ _id: mobileTemp._id }, { send_count, add_timer: +new Date() })
+            const { phone } = this.ctx.request.body
+            const ip = this.ctx.request.header['x-forwarded-for'] // 客户端ip
+            const add_day = await this.ctx.service.tools.getDay()
+            const mobileTemp = await this.ctx.model.MobileTemp.findOne({ add_day });
+            //1个ip 一天只能发10个手机号
+            var ipCount = await this.ctx.model.MobileTemp.find({ ip, add_day }).count();
+            if (mobileTemp) {
+                // 1分钟后再发送
+                if (((+new Date() / 1000) - mobileTemp.add_timer / 1000) < 60) {
+                    return this.ctx.body = {
+                        code: -2,
+                        msg: '请1分钟后再试',
+                        timer: 60 - Math.floor(((+new Date() / 1000) - mobileTemp.add_timer / 1000))
+                    }
+                }
+                // 说明次数没有到，继续发送
+                if (mobileTemp.send_count < 6 && ipCount < 10) {
+                    const send_count = mobileTemp.send_count + 1
+                    await this.ctx.model.MobileTemp.updateOne({ _id: mobileTemp._id }, { send_count, add_timer: +new Date() })
+                    const data = await this.service.tools.sendCode(phone, num)
+                    if (data.error_code == 0) {
+                        this.success('短信发送成功')
+                    } else if (data.error_code == 10012) {
+                        this.error('没有免费短信了，请直接注册')
+                    }
+                } else {
+                    this.error('当前手机号码发送次数达到上限，明天重试')
+                }
+            } else {
+
                 const data = await this.service.tools.sendCode(phone, num)
                 if (data.error_code == 0) {
+                    // 第一次发送
+                    let phoneTmep = new this.ctx.model.MobileTemp({
+                        phone,
+                        add_day,
+                        ip,
+                        send_count: 1
+                    });
+                    await phoneTmep.save();
                     this.success('短信发送成功')
                 } else if (data.error_code == 10012) {
                     this.error('没有免费短信了，请直接注册')
                 }
-            } else {
-                this.error('当前手机号码发送次数达到上限，明天重试')
-            }
-        } else {
-
-            const data = await this.service.tools.sendCode(phone, num)
-            if (data.error_code == 0) {
-                // 第一次发送
-                let phoneTmep = new this.ctx.model.MobileTemp({
-                    phone,
-                    add_day,
-                    ip,
-                    send_count: 1
-                });
-                await phoneTmep.save();
-                this.success('短信发送成功')
-            } else if (data.error_code == 10012) {
-                this.error('没有免费短信了，请直接注册')
             }
         }
-    }
-    // 保持登录
+        // 保持登录
     async keepLogin() {
         const { ctx } = this
         if (ctx.session.userInfo) {
@@ -206,7 +206,7 @@ class UserController extends BaseController {
     // 修改保存用户
     async saveUser() {
         const data = this.ctx.request.body
-        if (data.avatar) {  // 判断是否修改头像
+        if (data.avatar) { // 判断是否修改头像
             let { saveDir } = await this.service.tools.getUploadFile(data.avatar)
             data.avatar = saveDir
             this.ctx.session.userInfo['avatar'] = data.avatar
@@ -282,7 +282,7 @@ class UserController extends BaseController {
     async isCollection() {
         const { ctx } = this
         const { _id } = this.ctx.session.userInfo
-        const { id } = this.ctx.request.body    // 商品id
+        const { id } = this.ctx.request.body // 商品id
         const result = await ctx.model.Collection.findOne({ cid: id, uid: _id })
         if (!result) {
             ctx.body = {
@@ -322,8 +322,13 @@ class UserController extends BaseController {
     async orderNum() {
         const { ctx } = this
         const uid = ctx.session.userInfo._id
-        // 0,待付款 1，待发货 2，待收货 3，已完成
-        let num = [], num1 = [], num2 = [], num3 = [], numList = [], evaluate = [] // 待评价
+            // 0,待付款 1，待发货 2，待收货 3，已完成
+        let num = [],
+            num1 = [],
+            num2 = [],
+            num3 = [],
+            numList = [],
+            evaluate = [] // 待评价
         const res = await ctx.model.OrderList.find({ uid })
         res.forEach(item => {
             if (item.status == 0) {
@@ -337,7 +342,7 @@ class UserController extends BaseController {
             } else {
                 item.order_list.forEach(v => {
                     if (!v.isComment) {
-                        evaluate.push(v)// 待评价商品数量
+                        evaluate.push(v) // 待评价商品数量
                     }
                 })
             }
@@ -351,47 +356,46 @@ class UserController extends BaseController {
 
     // 查询已经评价的商品
     async alreadyEvaluated() {
-        const { ctx } = this
-        const uid = ctx.session.userInfo._id
-        let pageSize = 10
-        let page = ctx.query.page || 1
-        let skip = (page - 1) * pageSize
-        const alreadyEvaluated = await ctx.model.Comment.aggregate([
-            {
-                $lookup: {
-                    from: "goods",
-                    localField: "cid",
-                    foreignField: "id",
-                    as: "goods"
-                }
-            },
-            {
-                $match: {
-                    comment_uid: this.app.mongoose.Types.ObjectId(uid),
+            const { ctx } = this
+            const uid = ctx.session.userInfo._id
+            let pageSize = 10
+            let page = ctx.query.page || 1
+            let skip = (page - 1) * pageSize
+            const alreadyEvaluated = await ctx.model.Comment.aggregate([{
+                    $lookup: {
+                        from: "goods",
+                        localField: "cid",
+                        foreignField: "id",
+                        as: "goods"
+                    }
                 },
-            },
-            {
-                $sort: { comment_time: -1 }
-            },
-            {
-                $skip: skip
-            },
-            {
-                $limit: pageSize
-            }
+                {
+                    $match: {
+                        comment_uid: this.app.mongoose.Types.ObjectId(uid),
+                    },
+                },
+                {
+                    $sort: { comment_time: -1 }
+                },
+                {
+                    $skip: skip
+                },
+                {
+                    $limit: pageSize
+                }
 
-        ])
-        const count = await ctx.model.Comment.find({ comment_uid: uid }).countDocuments()
-        ctx.body = {
-            code: 200,
-            data: {
-                count,
-                page,
-                list: alreadyEvaluated
+            ])
+            const count = await ctx.model.Comment.find({ comment_uid: uid }).countDocuments()
+            ctx.body = {
+                code: 200,
+                data: {
+                    count,
+                    page,
+                    list: alreadyEvaluated
+                }
             }
         }
-    }
-    // 查询待评价的商品
+        // 查询待评价的商品
     async tobeEvaluated() {
         const { ctx } = this
         const uid = ctx.session.userInfo._id
@@ -431,8 +435,7 @@ class UserController extends BaseController {
     // 查询单条 评价详情
     async evaluateOne() {
         const { ctx } = this
-        const evaluateOne = await ctx.model.Comment.aggregate([
-            {
+        const evaluateOne = await ctx.model.Comment.aggregate([{
                 $lookup: {
                     from: "goods",
                     localField: "cid",
