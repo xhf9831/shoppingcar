@@ -129,6 +129,11 @@ import hotgoods from '../../components/hstructure/Hotgoods'
     })
     this.getData(),
     this.init();
+    if(this.$route.params.item){
+      this.city = this.$route.params.item
+    }else{
+      this.city = ''
+    }
    },
    watch: {
 
