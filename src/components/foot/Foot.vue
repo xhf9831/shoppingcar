@@ -23,9 +23,9 @@
    methods: {
      getNum(){
       this.$api.getCard().then(res=>{
-        if(res.shopList.length>0){
+        if(res.code === 200 &&res.shopList.length>0){
           this.num = res.shopList.length
-        }else{
+        }else if(res.code === 200 && res.shopList.length === 0){
           this.num = ''
         }
       }).catch(err=>{

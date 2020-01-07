@@ -126,6 +126,7 @@
            this.changeCode()
          }else if(res.code === -2){
            this.$toast('验证码错误');
+           this.verify=''
            this.changeCode()
          }
        }).catch(err=>{
@@ -136,13 +137,17 @@
        this.$api.register(this.nickname,this.password,this.verify).then(res=>{
          if(res.code === 200){
            this.$toast('注册成功');
-           localStorage.setItem("user",JSON.stringify({name:this.nickname}))
+           localStorage.setItem("user" , JSON.stringify(res.userInfo))
            this.$router.push('/home')
          }else if (res.code === -1){
            this.$toast('用户名已存在');
+           this.nickname=''
+           this.password=''
+           this.verify=''
            this.changeCode()
          }else if(res.code === -2){
            this.$toast('验证码错误');
+           this.verify=''
            this.changeCode()
          }
        }).catch(err=>{

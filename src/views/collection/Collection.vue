@@ -8,7 +8,7 @@
       我的收藏
     </div>
    </my-top>
-   <div>
+   <div v-if="list.length>0">
      <div v-for="(item,index) in list" :key="index" class="content" @click="godetail(item)">
        <div class="left">
          <img class="l-p" :src="item.image_path" alt="">
@@ -19,6 +19,9 @@
          <div class="cancle"><van-icon @click.stop="cancelIt(item)" name="close" /></div>
        </div>
      </div>
+   </div>
+   <div id="title" v-else>
+     暂无收藏的商品噢~
    </div>
  </div>
 </template>
@@ -43,7 +46,6 @@
        .then(res=>{
          this.list = res.data.list
        }).catch(err=>{
-         console.log(err);
        })
      },
      cancelIt(item){
@@ -70,6 +72,12 @@
 </script>
 
 <style scoped lang='scss'>
+#title{
+  color: #C3C3C3;
+  font-size:20px;
+  text-align: center;
+  margin-top: 20%;
+}
 .header{
   font-size: 20px;
   line-height: 37.5px;

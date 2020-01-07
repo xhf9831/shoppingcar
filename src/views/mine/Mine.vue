@@ -80,7 +80,7 @@
           <van-button type="primary" @click="submitIt()">保存</van-button>
         </div>
         <div class="but-content van__but">
-          <van-button type="default">取消</van-button>
+          <van-button @click="notSubmit()" type="default">取消</van-button>
         </div>
       </van-popup>
      </div>
@@ -176,6 +176,9 @@ import conf from '../../components/mineconstructure/Confunction';
         }).catch(err=>{
           console.log(err);
         })
+      },
+      notSubmit(){
+        this.show = false
       }
    },
    mounted() {

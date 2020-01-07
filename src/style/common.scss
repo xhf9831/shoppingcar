@@ -58,3 +58,24 @@
         top: 6px;
     }
 }
+
+.van__position {
+    .van-button--large {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        height: 38px;
+        line-height: 38px;
+        font-size: 3.733vw;
+    }
+}
+
+.van__fun {
+    .van-button--round {
+        border-radius: 0;
+    }
+    .van-address-list__bottom {
+        padding: 0;
+    }
+}

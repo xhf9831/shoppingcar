@@ -628,3 +628,20 @@
 2020-01-06 21:51:58,778 INFO 6364 [egg-mongoose] instance[0] start successfully
 2020-01-06 21:51:58,780 INFO 6364 [egg-watcher:application] watcher start success
 2020-01-06 21:51:58,792 INFO 6364 [egg:core] dump config after ready, 9ms
+2020-01-07 08:36:04,415 INFO 6344 [egg:logger] init all loggers with options: {"dir":"C:\\Users\\Administrator\\Desktop\\shoppingcar\\server\\logs\\server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"server-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2020-01-07 08:36:04,561 INFO 6344 [egg-multipart] stream mode enable
+2020-01-07 08:36:07,884 INFO 6344 [egg-mongoose] connecting mongodb://127.0.0.1/shoppingMall
+2020-01-07 08:36:11,056 INFO 6344 [egg-static] starting static serve /public/ -> C:\Users\Administrator\Desktop\shoppingcar\server\app\public
+2020-01-07 08:36:11,083 INFO 6344 [egg-security] use methodnoallow middleware
+2020-01-07 08:36:11,089 INFO 6344 [egg-security] use noopen middleware
+2020-01-07 08:36:11,111 INFO 6344 [egg-security] use nosniff middleware
+2020-01-07 08:36:11,116 INFO 6344 [egg-security] use xssProtection middleware
+2020-01-07 08:36:11,121 INFO 6344 [egg-security] use xframe middleware
+2020-01-07 08:36:11,127 INFO 6344 [egg-security] use dta middleware
+2020-01-07 08:36:11,128 INFO 6344 [egg-security] compose 6 middlewares into one security middleware
+2020-01-07 08:36:11,289 INFO 6344 [egg:core] dump config after load, 14ms
+2020-01-07 08:36:11,296 INFO 6344 [egg-mongoose] starting...
+2020-01-07 08:36:11,461 INFO 6344 [egg-watcher:application] watcher start success
+2020-01-07 08:36:11,471 INFO 6344 [egg-mongoose] mongodb://127.0.0.1/shoppingMall connected successfully
+2020-01-07 08:36:11,493 INFO 6344 [egg-mongoose] instance[0] start successfully
+2020-01-07 08:36:11,516 INFO 6344 [egg:core] dump config after ready, 19ms

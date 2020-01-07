@@ -71,6 +71,12 @@ const routes = [{
         name: 'addresslist',
         component: () =>
             import ('../views/addresslist/Addresslist')
+    },
+    {
+        path: '/editaddress',
+        name: 'editaddress',
+        component: () =>
+            import ('../views/editaddress/Editaddress')
     }
 ]
 

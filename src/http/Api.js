@@ -157,9 +157,7 @@ export default {
     },
 
     deleteAddress(id) {
-        return service.post('/deleteAddress', {
-            id
-        })
+        return service.post('/deleteAddress', { id })
     },
 
     getCollection(page = 1) {
