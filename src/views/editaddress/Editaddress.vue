@@ -52,7 +52,11 @@ import arelist from '../../http/area'
        this.$api.postAddress(obj).then(res=>{
          if(res.code === 200){
            this.$toast('添加成功');
-           this.$router.go(-1)                      
+           this.$api.getDefaultAddress().then(res=>{
+            console.log(res);
+            this.$router.go(-1)  
+          }) 
+                           
          }
        }).catch(err=>{
          console.log(err);

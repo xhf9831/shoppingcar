@@ -11,7 +11,8 @@
    <div class="van__fun" v-if="list.length>0">
     <van-address-list
       v-model="chosenAddressId"
-      :list="list"  
+      :list="list"
+      default-tag-text="默认"  
       @add="go('/editaddress')"
       @edit="edit"
     />
@@ -33,7 +34,7 @@
    data () {
      return {
        list:[],
-       chosenAddressId:"1"
+       chosenAddressId:null
      }
    },
    components: {
@@ -48,16 +49,20 @@
            this.list = res.address
          }
          if(this.list.length>0){
+          //  console.log(this.list.some(item=>item.isDefault));
            this.list.map(item=>{
             item.id = item._id
             if(item.isDefault){
               this.chosenAddressId = item.id
-            }else{
-              this.chosenAddressId = this.list[0].id
-              this.list[0].isDefault = true
             }
           })
-         }
+          if(!this.list.some(item=>item.isDefault)){
+            this.$api.setDefaultAddress(this.list[0].id).then(res=>{
+              this.chosenAddressId =this.list[0].id
+              this.list[0].isDefault=true
+            })
+          }
+        }
        }).catch(err=>{
          console.log(err);
        })

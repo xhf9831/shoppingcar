@@ -2,7 +2,7 @@
  <div class="top-container">
    <my-top class="top">
     <div v-if="city !==''" slot="left" class="position">
-      <span class="city">{{city}}</span>
+      <span class="city" @click="go('/city')">{{city}}</span>
       <span class="select">
         <img class="s-p" src="../../assets/下拉.svg" alt="">
       </span>
@@ -93,6 +93,9 @@ import hotgoods from '../../components/hstructure/Hotgoods'
         click: true,
         probeType: 3 // listening scroll hook
       });
+    },
+    go(text){
+      this.$router.push(text)
     }
    },
    mounted() {

@@ -77,6 +77,12 @@ const routes = [{
         name: 'editaddress',
         component: () =>
             import ('../views/editaddress/Editaddress')
+    },
+    {
+        path: '/city',
+        name: 'city',
+        component: () =>
+            import ('../views/city/City')
     }
 ]
 

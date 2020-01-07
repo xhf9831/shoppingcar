@@ -1,8 +1,8 @@
 <template>
  <div class="view">
-  <van-swipe :autoplay="3000">
+  <van-swipe :autoplay="3000" :stop-propagation='false'>
     <van-swipe-item v-for="(item,index) in list.slides" :key="index">
-      <img class="v-p" :src="item.image" alt="">
+      <img class="v-p" @click.stop="Todetail(item)" :src="item.image" alt="">
     </van-swipe-item>
   </van-swipe>
  </div>
@@ -25,6 +25,9 @@
        }).catch(err=>{
          console.log(err);
        })
+     },
+     Todetail(item){
+       this.$router.push({path:'/malldetail',query:{id:item.goodsId}})
      }
    },
    mounted() {
