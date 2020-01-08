@@ -14,7 +14,43 @@
       去登录
     </div>
   </div>
-  <div v-else></div>
+  <div v-else>
+    <div class="header">
+      <div class="checkall van__select">
+        <van-checkbox v-model="checked" checked-color="#E44E48" shape="square">全选</van-checkbox>
+      </div>
+      <div class="sum">
+        合计：<span class="sumall">{{sum}}</span>
+      </div>
+    </div>
+    <div v-for="item in list" :key="item.id">
+      <div>
+        <div class="left">
+          <div>
+            <van-checkbox v-model="checked" checked-color="#E44E48" shape="square"></van-checkbox>
+          </div>
+          <div>
+            <img :src="item.image_path" alt="">
+          </div>
+        </div>
+        <div class="right">
+          <div>
+            {{item.name}}
+          </div>
+          <div>
+            <div>
+              ￥{{item.present_price}}
+            </div>
+            <div>
+              <van-stepper v-model="item.count" />
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
  </div>
 </template>
 
@@ -22,7 +58,10 @@
  export default {
    data () {
      return {
-       user:{}
+       user:{},
+       checked:'',
+       sum:0,
+       list:[]
      }
    },
    components: {
@@ -31,9 +70,20 @@
    methods: {
      go(text){
        this.$router.push(text)
+     },
+     getData(){
+       this.$api.getCard().then(res=>{
+         if(res.code ===200){
+           this.list = res.shopList
+           console.log(this.list);
+         }
+       }).catch(err=>{
+         console.log(err);
+       })
      }
    },
    mounted() {
+     this.getData()
      if(JSON.parse(localStorage.getItem("user")) !== null){
        return this.user = JSON.parse(localStorage.getItem("user"))
      }else if(JSON.parse(localStorage.getItem("user")) === null){
@@ -77,6 +127,20 @@
     border-radius: 20px;
     padding: 5px 20px;
     font-size: 20px;
+  }
+}
+.header{
+  display: flex;
+  padding: 5px 15px;
+  justify-content: space-between;
+  height: 70px;
+  line-height: 70px;
+  border-bottom: 1px solid black;
+  .sum{
+    padding-right: 40px;
+    .sumall{
+      color: #E0322B;
+    }
   }
 }
 </style>
