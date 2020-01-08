@@ -1,3 +1,5 @@
 export default {
-    collection: ''
+    city: '',
+    alreadycity: '',
+    values: []
 }

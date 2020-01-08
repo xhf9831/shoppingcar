@@ -1,6 +1,6 @@
 .van__pa {
     .van-search {
-        padding: 0;
+        padding: 2px;
     }
 }
 
@@ -76,6 +76,12 @@
         border-radius: 0;
     }
     .van-address-list__bottom {
+        padding: 0;
+    }
+}
+
+.van__pad {
+    .van-search {
         padding: 0;
     }
 }
