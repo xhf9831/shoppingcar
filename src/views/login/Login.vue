@@ -124,6 +124,7 @@
          }else if(res.code === -1){
            this.$toast('用户名错误');
            this.changeCode()
+           this.verify=''
          }else if(res.code === -2){
            this.$toast('验证码错误');
            this.verify=''

@@ -108,6 +108,7 @@ import floor from '../../components/hstructure/Floor'
 import hotgoods from '../../components/hstructure/Hotgoods'
 import util from '../../http/util'
  export default {
+   name:'home',
    data () {
      return {
        city:'',
@@ -184,7 +185,7 @@ import util from '../../http/util'
         }).then((res) => {
           this.$store.state.values.splice(0)
           this.$store.state.values = this.memory
-        }).catch(() => {
+        }).catch((err) => {
           this.dialog = false
       });
     },

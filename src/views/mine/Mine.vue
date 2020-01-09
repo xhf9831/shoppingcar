@@ -106,6 +106,7 @@
 import mtag from '../../components/mineconstructure/Tag';
 import conf from '../../components/mineconstructure/Confunction';
  export default {
+   name:'mine',
    data () {
      return {
       user:null,

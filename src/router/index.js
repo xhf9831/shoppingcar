@@ -83,6 +83,12 @@ const routes = [{
         name: 'city',
         component: () =>
             import ('../views/city/City')
+    },
+    {
+        path: '/payment',
+        name: 'payment',
+        component: () =>
+            import ('../views/payment/Payment')
     }
 ]
 

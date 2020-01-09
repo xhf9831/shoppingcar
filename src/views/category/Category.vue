@@ -42,6 +42,7 @@
 <script>
 import BScroll from "better-scroll";
 export default {
+  name:'category',
   data() {
     return {
       mallCategoryId: 0,

@@ -18,7 +18,7 @@
             <del class="s-r">￥{{item.price}}</del>
           </div>
           <div class="check">
-            <span class="sale"><van-icon name="shopping-cart" color="white" /></span>
+            <span @click="sale(item.goodsId)" class="sale"><van-icon name="shopping-cart" color="white" /></span>
             <span @click="toDetail(item)" class="c-detail">查看详情</span>
           </div>
         </div>
@@ -33,7 +33,8 @@ import BScroll from "better-scroll";
  export default {
    data () {
      return {
-       list:[]
+       list:[],
+       num:''
      }
    },
    components: {
@@ -55,11 +56,34 @@ import BScroll from "better-scroll";
     },
     toDetail(item){
       this.$router.push({path:'/malldetail',query:{id:item.goodsId}})
+    },
+    sale(item) {
+      this.$api.addShop(item).then(res=>{
+        if(res.code === 200){
+          this.$toast('已加入购物车');
+          this.getNum()
+        }
+      }).catch(err=>{
+        console.log(err);
+      })
+    },
+    getNum(){
+      this.$api.getCard().then(res=>{
+        if(res.shopList.length>0){
+          this.num = res.shopList.length
+          this.$store.state.num = this.num
+        }else{
+          this.num = ''
+        }
+      }).catch(err=>{
+        console.log(err);
+      })
     }
    },
    mounted() {
-     this.getData(),
+     this.getData();
      this.init();
+     this.getNum()
    },
    watch: {
 

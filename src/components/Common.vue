@@ -1,6 +1,9 @@
 <template>
  <div>
-   <router-view></router-view>
+   <keep-alive include="home,mine">
+     <!-- 保存状态 -->
+    <router-view></router-view>
+   </keep-alive>
    <foot></foot>
  </div>
 </template>
