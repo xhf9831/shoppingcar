@@ -2,5 +2,5 @@ export default {
     city: '',
     alreadycity: '',
     values: [],
-    count: 0
+    num: 0
 }

@@ -23,8 +23,14 @@
    methods: {
      getNum(){
       this.$api.getCard().then(res=>{
+        let num = 0
         if(res.code === 200 &&res.shopList.length>0){
-          this.num = res.shopList.length
+          console.log(res.shopList);
+          res.shopList.map(item=>{
+            num += item.count
+          })
+          this.num = num
+          console.log(this.num);
         }else if(res.code === 200 && res.shopList.length === 0){
           this.num = ''
         }
@@ -35,6 +41,9 @@
    },
    mounted() {
      this.active = this.$route.name
+     if(this.num !== this.$store.state.num){
+       this.num = this.$store.state.num
+     }
      this.getNum()
    },
    watch: {

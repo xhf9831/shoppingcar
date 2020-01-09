@@ -714,3 +714,20 @@
 2020-01-09 08:45:37,709 INFO 3764 [egg-mongoose] mongodb://127.0.0.1/shoppingMall connected successfully
 2020-01-09 08:45:37,724 INFO 3764 [egg-mongoose] instance[0] start successfully
 2020-01-09 08:45:37,753 INFO 3764 [egg:core] dump config after ready, 26ms
+2020-01-09 21:26:33,981 INFO 12896 [egg:logger] init all loggers with options: {"dir":"C:\\Users\\Administrator\\Desktop\\shopping-master\\server\\logs\\server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"server-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2020-01-09 21:26:34,020 INFO 12896 [egg-multipart] stream mode enable
+2020-01-09 21:26:34,621 INFO 12896 [egg-mongoose] connecting mongodb://127.0.0.1/shoppingMall
+2020-01-09 21:26:35,200 INFO 12896 [egg-static] starting static serve /public/ -> C:\Users\Administrator\Desktop\shopping-master\server\app\public
+2020-01-09 21:26:35,204 INFO 12896 [egg-security] use methodnoallow middleware
+2020-01-09 21:26:35,205 INFO 12896 [egg-security] use noopen middleware
+2020-01-09 21:26:35,206 INFO 12896 [egg-security] use nosniff middleware
+2020-01-09 21:26:35,207 INFO 12896 [egg-security] use xssProtection middleware
+2020-01-09 21:26:35,208 INFO 12896 [egg-security] use xframe middleware
+2020-01-09 21:26:35,208 INFO 12896 [egg-security] use dta middleware
+2020-01-09 21:26:35,208 INFO 12896 [egg-security] compose 6 middlewares into one security middleware
+2020-01-09 21:26:35,251 INFO 12896 [egg:core] dump config after load, 9ms
+2020-01-09 21:26:35,258 INFO 12896 [egg-mongoose] starting...
+2020-01-09 21:26:35,346 INFO 12896 [egg-mongoose] mongodb://127.0.0.1/shoppingMall connected successfully
+2020-01-09 21:26:35,375 INFO 12896 [egg-mongoose] instance[0] start successfully
+2020-01-09 21:26:35,380 INFO 12896 [egg-watcher:application] watcher start success
+2020-01-09 21:26:35,401 INFO 12896 [egg:core] dump config after ready, 15ms

@@ -43,7 +43,7 @@
       <van-tab title="商品评论"></van-tab>
     </van-tabs>
    </div>
-   <fina :id="list.id"></fina>
+   <fina :message="list" :id="list.id"></fina>
  </div>
 </template>
 
@@ -54,7 +54,7 @@ import fina from '../../components/finally/Finally'
      return {
        id:'',
        page:1,
-       list:[],
+       list:{},
        arr:[],
        show:false,
        //有几张图滚几张图
@@ -69,6 +69,8 @@ import fina from '../../components/finally/Finally'
      getData(){
        this.$api.goodOne(this.id,this.page = 1).then(res=>{
          this.list = res.goods.goodsOne
+         console.log(this.list);
+         console.log(typeof(this.list));
          this.arr.push(this.list.image)
          this.arr.push(this.list.image)
          this.arr.push(this.list.image)

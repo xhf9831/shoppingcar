@@ -133,6 +133,7 @@ import util from '../../http/util'
      getData(){
        this.$api.recommend().then(res=>{
          this.list = res.data;
+         console.log(this.list);
        }).catch(err=>{
          console.log(err);
        })

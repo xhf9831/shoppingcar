@@ -33,8 +33,7 @@ import BScroll from "better-scroll";
  export default {
    data () {
      return {
-       list:[],
-       num:''
+       list:[]
      }
    },
    components: {
@@ -61,29 +60,35 @@ import BScroll from "better-scroll";
       this.$api.addShop(item).then(res=>{
         if(res.code === 200){
           this.$toast('已加入购物车');
-          this.getNum()
+          // this.getNum()
         }
       }).catch(err=>{
         console.log(err);
       })
     },
-    getNum(){
-      this.$api.getCard().then(res=>{
-        if(res.shopList.length>0){
-          this.num = res.shopList.length
-          this.$store.state.num = this.num
-        }else{
-          this.num = ''
-        }
-      }).catch(err=>{
-        console.log(err);
-      })
-    }
+    // getNum(){
+    //   this.$api.getCard().then(res=>{
+    //     if(res.shopList.length>0){
+    //       let num = 0
+    //       res.shopList.map(item=>{
+    //         num += item.count
+    //       })
+    //       this.$store.state.num = num
+    //       console.log(this.$store.state.num);
+    //       // this.num = res.shopList.length
+    //       // this.$store.state.num = this.num
+    //     }else{
+    //       num = ''
+    //     }
+    //   }).catch(err=>{
+    //     console.log(err);
+    //   })
+    // }
    },
    mounted() {
      this.getData();
      this.init();
-     this.getNum()
+    //  this.getNum()
    },
    watch: {
 
