@@ -14,37 +14,18 @@
    data () {
      return {
        active:'home',
-       num:''
+     
      }
    },
    components: {
 
    },
    methods: {
-     getNum(){
-      this.$api.getCard().then(res=>{
-        let num = 0
-        if(res.code === 200 &&res.shopList.length>0){
-          console.log(res.shopList);
-          res.shopList.map(item=>{
-            num += item.count
-          })
-          this.num = num
-          console.log(this.num);
-        }else if(res.code === 200 && res.shopList.length === 0){
-          this.num = ''
-        }
-      }).catch(err=>{
-        console.log(err);
-      })
-    }
+
    },
    mounted() {
      this.active = this.$route.name
-     if(this.num !== this.$store.state.num){
-       this.num = this.$store.state.num
-     }
-     this.getNum()
+   
    },
    watch: {
      $route(val){
@@ -52,7 +33,14 @@
      }
    },
    computed: {
-
+     //数据可以同步刷新
+     num(){
+        if(this.$store.state.num === 0){
+        return ''
+      }else{ 
+        return this.$store.state.num
+      }
+     }
    }
  }
 </script>

@@ -31,7 +31,11 @@
    },
    methods: {
      go(text){
-       this.$router.push(text)
+       if (localStorage.user) {
+         this.$router.push(text)
+       }else{
+         this.$toast('请登录后再试');
+       }
      }
    },
    mounted() {

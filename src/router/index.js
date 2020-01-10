@@ -89,6 +89,18 @@ const routes = [{
         name: 'payment',
         component: () =>
             import ('../views/payment/Payment')
+    },
+    {
+        path: '/myorder',
+        name: 'myorder',
+        component: () =>
+            import ('../views/myorder/Myorder')
+    },
+    {
+        path: '/replycenter',
+        name: 'replycenter',
+        component: () =>
+            import ('../views/replycenter/Replycenter')
     }
 ]
 

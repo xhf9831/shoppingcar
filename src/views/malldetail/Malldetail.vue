@@ -69,8 +69,6 @@ import fina from '../../components/finally/Finally'
      getData(){
        this.$api.goodOne(this.id,this.page = 1).then(res=>{
          this.list = res.goods.goodsOne
-         console.log(this.list);
-         console.log(typeof(this.list));
          this.arr.push(this.list.image)
          this.arr.push(this.list.image)
          this.arr.push(this.list.image)

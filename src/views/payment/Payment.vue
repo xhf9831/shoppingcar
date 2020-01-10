@@ -36,7 +36,7 @@
         </div>
         <div class="sumcount">
           <div class="p-price">
-            ￥{{item.mallPrice * item.count}}
+            ￥{{item.mallPrice * item.count | num()}}
           </div>
           <div class="count">
             ×{{item.count}}
@@ -61,7 +61,8 @@
        address:[],
        defaultadd:[],
        order:[],
-       counts:0
+       counts:0,
+       flag:false
      }
    },
    components: {
@@ -70,6 +71,9 @@
    methods: {
      getBack(){
        this.$router.go(-1)
+       this.list.length = 0
+       localStorage.setItem("pay",JSON.stringify(this.list))
+       localStorage.setItem("now",JSON.stringify(this.list))
      },
      getData(){
        this.$api.getAddress().then(res=>{
@@ -85,7 +89,6 @@
        this.$api.getDefaultAddress().then(res=>{
          if(res.code === 200){
            this.defaultadd = res.defaultAdd
-           console.log(this.defaultadd);
          }
        }).catch(err=>{
          console.log(err);
@@ -101,12 +104,27 @@
          tel:this.list.tel,
          orderId:this.order,
          totalPrice:this.sum,
-         idDirect:false,
+         idDirect:this.flag,
          count:this.counts
        }
        this.$api.placeOrder(obj).then(res=>{
          if(res.code === 200){
            this.$toast(res.msg);
+           this.$store.state.num = 0
+           this.$api.getCard().then(res=>{
+             if (res.shopList.length>0) {
+               res.shopList.map(item=>{
+                 this.$store.state.num += item.count 
+               })
+               console.log(this.$store.state.num);
+               return this.$store.state.num
+             }else{
+               this.$store.state.num = ''
+             }
+           })
+           this.list.length = 0
+           localStorage.setItem("pay",JSON.stringify(this.list))
+           localStorage.setItem("now",JSON.stringify(this.list))
            this.$router.push('/home')
          }
        }).catch(err=>{
@@ -115,12 +133,24 @@
      }
    },
    mounted() {
-     this.list = JSON.parse(localStorage.getItem("pay"))
+     if(JSON.parse(localStorage.pay).length !== 0){
+       this.list = JSON.parse(localStorage.getItem("pay"))
+     }else{
+       this.list = JSON.parse(localStorage.getItem("now"))
+       this.flag = true
+     }
+     console.log(this.flag);
+     console.log(this.list);
      this.getData()
      this.gerDefaultadd()
    },
    watch: {
 
+   },
+   filters:{
+     num(val){
+       return val.toFixed(2)
+     }
    },
    computed: {
      sum(){

@@ -100,6 +100,28 @@
 
 .van__hid {
     .van-popup {
-        overflow-y: none
+        overflow-y: initial
+    }
+}
+
+.van__ba {
+    .van-tab {
+        flex-basis: 20% !important;
+        flex: 0 0 20% !important;
+    }
+}
+
+.van__te {
+    .van-tabs {
+        overflow: inherit !important;
+    }
+    .van-tabs__wrap {
+        height: 11.733vw !important;
+        position: absolute !important;
+        width: 330px !important;
+        left: 22px !important;
+        top: -20px !important;
+        box-shadow: 1px 1px 8px 1px #cdcdcd !important;
+        border-radius: 5px !important;
     }
 }

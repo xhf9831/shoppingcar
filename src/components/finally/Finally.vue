@@ -10,14 +10,39 @@
     <van-popup
       v-model="show"
       position="bottom"
-      :style="{ height: '30%' }"
+      :style="{ height: '40%' }"
     >
     <div class="top">
       <div class="left">
-        <div class="l-content"><img class="l-p" :src="message.image" alt=""></div>
-        <div class="l-title">{{message.name}}</div>
+        <div class="l-all">
+          <div class="l-content"><img class="l-p" :src="message.image" alt=""></div>
+          <div>
+            <div class="l-title">{{message.name}}</div>
+            <div class="l-price">￥{{message.present_price}}</div>
+          </div>
+        </div>
+        <div>
+          
+        </div>
       </div>
-      <div class="right"></div>
+      <div class="right">
+        <van-icon @click="changeShow" name="close" />
+      </div>
+    </div>
+    <div class="middle">
+      <div class="m-left">
+        <div class="salenum">购买数量:</div>
+        <div>
+          <span class="amount">剩余{{message.amount}}件</span>
+          <span class="max">每人限购50件</span>
+        </div>
+      </div>      
+      <div class="l-right">
+        <van-stepper max="50" v-model="value" />
+      </div>
+    </div>
+    <div class="van__position">
+      <van-button @click="go('/payment')" type="danger" size="large">立即购买</van-button>
     </div>
     </van-popup>
   </div>
@@ -30,7 +55,9 @@
    data () {
      return {
        show:false,
-       num:''
+       num:'',
+       value:'',
+       arr:[]
      }
    },
    props:{
@@ -51,22 +78,10 @@
       this.$api.addShop(id).then(res=>{
         if(res.code === 200){
           this.$toast('已加入购物车');
-          this.getNum()
-        }
-      }).catch(err=>{
-        console.log(err);
-      })
-    },
-    getNum(){
-      this.$api.getCard().then(res=>{
-        if(res.shopList.length>0){
-          let num = 0
-          res.shopList.map(item=>{
-            num += item.count
-          })
-          this.num = num
+          this.$store.state.num++
+          this.num = this.$store.state.num
         }else{
-          this.num = ''
+          this.$toast('请登录后再来添加');
         }
       }).catch(err=>{
         console.log(err);
@@ -74,10 +89,27 @@
     },
     changeShow() {
       this.show = !this.show
+    },
+    go(text){
+      if(localStorage.user){
+        this.message.count = this.value
+        this.message.cid = this.message.id
+        this.message.mallPrice = this.message.present_price
+        this.arr.push(this.message)
+        console.log(this.arr);
+        localStorage.setItem("now",JSON.stringify(this.arr))
+        this.$router.push('/payment')
+      }else{
+        this.$toast('请登录后再来购买哦');
+      }
     }
    },
    mounted() {
-     this.getNum()
+     if(this.$store.state.num !== 0){
+       this.num = this.$store.state.num
+     }else{
+       this.num =''
+     }
    },
    watch: {
 
@@ -97,14 +129,44 @@
 .top{
   display: flex;
   justify-content: space-between;
+  font-size: 15px;
+  padding: 0 10px 0 20px;
+  color: #323233;
   .left{
-    .l-content{
-      width: 110px;
-      .l-p{
-        position: relative;
-        top: -20px;
-        width: 100%;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    .l-all{
+      display: flex;
+      .l-content{
+        width: 110px;
+        padding-right: 10px;
+        .l-p{
+          position: relative;
+          top: -20px;
+          width: 100%;
+        }
       }
+      .l-price{
+        margin-top: 10px;
+        color: #FF4949;
+      }
+    }
+  }
+}
+.middle{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px 0 30px;
+  color: #323233;
+  font-size: 15px;
+  .m-left{
+    .amount{
+      color: #AFAFAF;
+    }
+    .max{
+      margin-left: 10px; 
+      color: #FF4949;
     }
   }
 }

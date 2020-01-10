@@ -133,7 +133,6 @@ import util from '../../http/util'
      getData(){
        this.$api.recommend().then(res=>{
          this.list = res.data;
-         console.log(this.list);
        }).catch(err=>{
          console.log(err);
        })
@@ -186,6 +185,7 @@ import util from '../../http/util'
         }).then((res) => {
           this.$store.state.values.splice(0)
           this.$store.state.values = this.memory
+          this.$toast('已经清空');
         }).catch((err) => {
           this.dialog = false
       });

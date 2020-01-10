@@ -72,7 +72,7 @@
        list:[],
        arr:[],
        palce:[],
-       dialog:false
+       dialog:false,
      }
    },
    components: {
@@ -131,6 +131,7 @@
           this.$api.deleteShop(this.arr).then(res=>{
             if(res.code === 200){
               this.$toast('删除成功');
+              this.$store.state.num = ''
               this.getData()
             }
           })

@@ -43,13 +43,10 @@
    methods: {
      getData(){
        this.$api.getAddress().then(res=>{
-         if(res.code === -1){
-           this.$toast('登录后才能添加哟');
-         }else{
+         if(res.code === 200){
            this.list = res.address
          }
          if(this.list.length>0){
-          //  console.log(this.list.some(item=>item.isDefault));
            this.list.map(item=>{
             item.id = item._id
             if(item.isDefault){
