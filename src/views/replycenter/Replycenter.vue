@@ -1,6 +1,6 @@
 <template>
  <div>
-    <my-top>
+  <my-top>
     <div class="header" slot="left">
       <van-icon @click="getBack" size="20px" color="blue" name="arrow-left" />
     </div>
@@ -24,7 +24,7 @@
                 {{item.name}}
               </div>
               <div class="e-reply van__marg">
-                <span class="toreply"><van-icon color="#FF4D4D" name="chat" />评论晒单</span>
+                <span class="toreply" @click="Reply(item)"><van-icon color="#FF4D4D" name="chat" />评论晒单</span>
               </div>
             </div>
           </div>
@@ -32,7 +32,19 @@
       </van-tab>
       <van-tab title="已评价">
         <div class="van-content">
-          123456
+          <div class="e-box" v-for="item in arr" :key="item.id">
+            <div class="left">
+              <img class="e-p" :src="item.goods[0].image" alt="">
+            </div>
+            <div class="right">
+              <div class="e-title">
+                {{item.goods[0].name}}
+              </div>
+              <div class="e-reply van__marg">
+                <span @click="todetail(item)" class="todetail"><van-icon color="#323233" name="search" />查看评价</span>
+              </div>
+            </div>
+          </div>
         </div>
       </van-tab>
     </van-tabs>
@@ -45,7 +57,9 @@
    data () {
      return {
        active:0,
-       list:[]
+       list:[],
+       page:1,
+       arr:[]
      }
    },
    components: {
@@ -53,12 +67,24 @@
    },
    methods: {
      getBack(){
-       this.$router.go(-1)
+       this.$router.push('/mine')
      },
      getData(){
-       this.$api.tobeEvaluated().then(res=>{
+       this.$api.tobeEvaluated(this.page).then(res=>{
          this.list = res.data.list
-         console.log(this.list);
+       }).catch(err=>{
+         console.log(err);
+       })
+     },
+     Reply(item){
+       this.$router.push({name:'postreply',params:{msg:item}})
+     },
+     todetail(item){
+       this.$router.push({name:'replydetail',params:{id:item._id}})
+     },
+     getAlready(){
+       this.$api.alreadyEvaluated(this.page).then(res=>{
+         this.arr = res.data.list
        }).catch(err=>{
          console.log(err);
        })
@@ -66,6 +92,8 @@
    },
    mounted() {
      this.getData()
+     this.getAlready()
+     this.active = this.$route.params.active
    },
    watch: {
 
@@ -113,11 +141,18 @@
     color: #323233;
     .e-reply{
       position: relative;
-      top:60px;
+      top:45px;
       text-align: right;
       .toreply{
         border: 1px solid #FF4D4D;
         color: #FF4D4D;
+        font-size: 13px;
+        border-radius: 15px;
+        padding: 5px 10px;
+      }
+      .todetail{
+        border: 1px solid #323233;
+        color: #323233;
         font-size: 13px;
         border-radius: 15px;
         padding: 5px 10px;

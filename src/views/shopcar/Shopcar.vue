@@ -109,9 +109,9 @@
        })
      },
      changeAll(){
-       this.list.map(item=>{
-         item.check = !this.checkall
-       })
+        this.list.map(item=>{
+        item.check = !this.checkall
+      })
      },
      checkone(){
        this.checkall = this.list.every((item)=>{

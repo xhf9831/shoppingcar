@@ -1,6 +1,6 @@
 <template>
  <div>
-   <div class="all box">
+   <div class="all box" @click ="go('/myorder')">
      <div class="van__box"><van-icon size="25px" name="records" />全部订单</div>
      <div><van-icon name="arrow" /></div>
    </div>
@@ -12,7 +12,7 @@
      <div class="van__box"><van-icon size="25px" name="location-o" />地址管理</div>
      <div><van-icon name="arrow" /></div>
    </div>
-   <div class="colock box">
+   <div class="colock box" @click ="go('/browinghistory')">
      <div class="van__box"><van-icon size="25px" name="clock-o" />最近浏览</div>
      <div><van-icon name="arrow" /></div>
    </div>

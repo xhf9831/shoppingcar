@@ -101,7 +101,26 @@ const routes = [{
         name: 'replycenter',
         component: () =>
             import ('../views/replycenter/Replycenter')
+    },
+    {
+        path: '/replydetail',
+        name: 'replydetail',
+        component: () =>
+            import ('../views/replydetail/Replydetail')
+    },
+    {
+        path: '/postreply',
+        name: 'postreply',
+        component: () =>
+            import ('../views/postreply/Postreply')
+    },
+    {
+        path: '/browinghistory',
+        name: 'browinghistory',
+        component: () =>
+            import ('../views/browinghistory/Browinghistory')
     }
+
 ]
 
 const router = new VueRouter({

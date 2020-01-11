@@ -44,7 +44,16 @@
      getData(){
        this.$api.getAddress().then(res=>{
          if(res.code === 200){
+           console.log(res.address);
+           res.address.map(item=>{
+             if (item.isDefault===true) {
+               if(res.address.indexOf(item)!==0){
+                res.address.unshift(res.address.splice(res.address.indexOf(item),1))
+               }
+             }
+           })
            this.list = res.address
+           console.log(this.list);
          }
          if(this.list.length>0){
            this.list.map(item=>{

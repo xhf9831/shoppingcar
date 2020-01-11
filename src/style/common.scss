@@ -131,3 +131,17 @@
         margin-right: 5px;
     }
 }
+
+.van__fiel {
+    .van-cell {
+        height: 150px;
+    }
+}
+
+.van__top {
+    .van-switch {
+        position: relative;
+        top: 5px;
+        margin-left: 10px;
+    }
+}

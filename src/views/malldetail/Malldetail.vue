@@ -40,7 +40,9 @@
     </div>
     <van-tabs class="van__feng" v-model="active">
       <van-tab title="商品详情"><div v-html="list.detail"></div></van-tab>
-      <van-tab title="商品评论"></van-tab>
+      <van-tab title="商品评论">
+        <reply :reply="reply"></reply>
+      </van-tab>
     </van-tabs>
    </div>
    <fina :message="list" :id="list.id"></fina>
@@ -49,6 +51,7 @@
 
 <script>
 import fina from '../../components/finally/Finally'
+import reply from '../../components/mallconstructure/Reply'
  export default {
    data () {
      return {
@@ -59,16 +62,31 @@ import fina from '../../components/finally/Finally'
        show:false,
        //有几张图滚几张图
        active:0,
-       num:1
+       num:1,
+       reply:[],
+       see:[]
      }
    },
    components: {
-     fina
+     fina,
+     reply
    },
    methods: {
      getData(){
        this.$api.goodOne(this.id,this.page = 1).then(res=>{
          this.list = res.goods.goodsOne
+         this.reply = res.goods.comment
+         this.reply.map(item=>{
+           if(item.anonymous === false){
+             item.user.map(itemx=>{
+               item.comment_avatar = itemx.avatar
+               item.comment_nickname = itemx.nickname
+            })
+           }
+         })
+        if (!this.$store.state.see.some(item => item.id === this.list.id)) {
+          this.$store.state.see.push(this.list)
+        };
          this.arr.push(this.list.image)
          this.arr.push(this.list.image)
          this.arr.push(this.list.image)
@@ -104,7 +122,7 @@ import fina from '../../components/finally/Finally'
        })
      },
     cancelcollectIt(num){
-       this.$api.cancelCollection({id:this.id}).then(res=>{
+       this.$api.cancelCollection(this.id).then(res=>{
          if(res.code === 200){
            this.num = num
            this.$toast('已取消收藏');

@@ -75,6 +75,7 @@
    },
    methods: {
     sale(id) {
+      console.log(id);
       this.$api.addShop(id).then(res=>{
         if(res.code === 200){
           this.$toast('已加入购物车');
