@@ -32,7 +32,7 @@
         </div>
       </div>
     </div>
-    <van-index-bar>
+    <van-index-bar :index-list="Object.keys(citys)">
       <div v-for="item in Object.keys(citys)" :key="item.id">
         <van-index-anchor :index="item" />
         <van-cell @click="selectItem(itemtext.name)" v-for="itemtext in citys[item]" :title="itemtext.name" :key="itemtext.id" />
@@ -52,7 +52,6 @@ import citylist from '../../http/city'
  export default {
    data () {
      return {
-      //  list:[ABCDEFGHJKLMNPQRTWXYZ]
        citys:{},
        hotcity:[],
        city:'',
