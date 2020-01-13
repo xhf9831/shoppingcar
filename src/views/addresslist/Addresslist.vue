@@ -48,7 +48,7 @@
            res.address.map(item=>{
              if (item.isDefault===true) {
                if(res.address.indexOf(item)!==0){
-                res.address.unshift(res.address.splice(res.address.indexOf(item),1))
+                res.address.unshift(...res.address.splice(res.address.indexOf(item),1))//这里面删除过后返回的是个数组，三个点可以重新返回数组的索引位置
                }
              }
            })

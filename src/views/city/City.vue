@@ -134,7 +134,7 @@ import citylist from '../../http/city'
     height: 25px;
     line-height: 25px;
     margin-top: 10px;
-    margin-left: 10px;
+    margin-left: 7px;
   }
 }
 .text-box{
