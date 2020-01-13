@@ -200,7 +200,6 @@
     }
   }
   .m-box{
-    background:rgb(230, 230, 231);
     width: 100%;
     display: flex;
     .m-content{

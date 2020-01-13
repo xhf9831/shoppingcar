@@ -850,3 +850,20 @@
 2020-01-13 10:10:26,626 INFO 3048 [egg-mongoose] instance[0] start successfully
 2020-01-13 10:10:26,630 INFO 3048 [egg-watcher:application] watcher start success
 2020-01-13 10:10:26,658 INFO 3048 [egg:core] dump config after ready, 18ms
+2020-01-13 10:46:48,590 INFO 9176 [egg:logger] init all loggers with options: {"dir":"C:\\Users\\Administrator\\Desktop\\shoppingcar\\server\\logs\\server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"server-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2020-01-13 10:46:48,751 INFO 9176 [egg-multipart] stream mode enable
+2020-01-13 10:46:51,713 INFO 9176 [egg-mongoose] connecting mongodb://127.0.0.1/shoppingMall
+2020-01-13 10:46:55,927 INFO 9176 [egg-static] starting static serve /public/ -> C:\Users\Administrator\Desktop\shoppingcar\server\app\public
+2020-01-13 10:46:55,958 INFO 9176 [egg-security] use methodnoallow middleware
+2020-01-13 10:46:55,964 INFO 9176 [egg-security] use noopen middleware
+2020-01-13 10:46:55,986 INFO 9176 [egg-security] use nosniff middleware
+2020-01-13 10:46:55,990 INFO 9176 [egg-security] use xssProtection middleware
+2020-01-13 10:46:55,998 INFO 9176 [egg-security] use xframe middleware
+2020-01-13 10:46:56,003 INFO 9176 [egg-security] use dta middleware
+2020-01-13 10:46:56,004 INFO 9176 [egg-security] compose 6 middlewares into one security middleware
+2020-01-13 10:46:56,181 INFO 9176 [egg:core] dump config after load, 14ms
+2020-01-13 10:46:56,188 INFO 9176 [egg-mongoose] starting...
+2020-01-13 10:46:56,395 INFO 9176 [egg-mongoose] mongodb://127.0.0.1/shoppingMall connected successfully
+2020-01-13 10:46:56,409 INFO 9176 [egg-mongoose] instance[0] start successfully
+2020-01-13 10:46:56,423 INFO 9176 [egg-watcher:application] watcher start success
+2020-01-13 10:46:56,495 INFO 9176 [egg:core] dump config after ready, 69ms
